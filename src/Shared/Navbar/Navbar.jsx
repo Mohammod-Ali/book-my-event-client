@@ -33,7 +33,7 @@ const Navbar = () => {
         <Link to='/addEvent'>Add Event (admin only)</Link>
       </li>
       <li>
-        <Link to='/'>Profile</Link>
+        <Link to='/profile'>Profile</Link>
       </li>
       <li>
         

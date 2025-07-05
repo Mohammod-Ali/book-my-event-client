@@ -5,6 +5,7 @@ import Signin from "../Pages/Signin/Signin";
 import Registration from "../Pages/Registration/Registration";
 import Register from "../Pages/Register/Register";
 import AddEvent from "../Pages/AddEvent/AddEvent";
+import Profile from "../Pages/Profile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
         path: "/registration",
         element: <Registration></Registration>,
       },
+      {
+        path: '/profile',
+        element: <Profile></Profile>
+      }
     ],
   },
 ]);

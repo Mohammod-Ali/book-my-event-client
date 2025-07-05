@@ -14,8 +14,9 @@ const AddEvent = () => {
     const seats = form.seats.value
     const registrationDeadline = form.registrationDeadline.value
     const registrationFee = form.registrationFee.value
+    const photoURL = form.photoURL.value
 
-    console.log(title, date, location, category, description, seats, registrationDeadline, registrationFee);
+    console.log(title, date, location, category, description, seats, registrationDeadline, registrationFee, photoURL);
     e.target.reset()
   };
     
@@ -114,23 +115,15 @@ const AddEvent = () => {
           />
         </div>
 
-        {/* <div>
-          <label className="block mb-1 font-medium">Upload Event Image</label>
+        <div>
+          <label className="block mb-1 font-medium">Photo URL</label>
           <input
-            type="file"
-            name="image"
-            accept="image/*"
-            // onChange={handleChange}
-            className="w-full"
+            type="url"
+            name="photoURL"
+            required
+            className="w-full border border-gray-300 p-2 rounded-md"
           />
-          {preview && (
-            <img
-              src={preview}
-              alt="Preview"
-              className="mt-4 w-full max-h-64 object-cover rounded-md border"
-            />
-          )}
-        </div> */}
+        </div>
 
         <button
           type="submit"
