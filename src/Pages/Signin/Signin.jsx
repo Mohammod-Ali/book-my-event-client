@@ -13,13 +13,13 @@ const Signin = () => {
     e.preventDefault()
     const email = e.target.email.value;
     const password = e.target.password.value
-    // console.log(email, password)
+    console.log(email, password)
 
     // sign in validation check
     signInUser(email, password)
     .then(result=>{
       console.log("sign in", result.user)
-      e.target.reset()
+      // e.target.reset()
     })
     .catch(error => {
       console.log(error)

@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import Signin from "../Pages/Signin/Signin";
 import Registration from "../Pages/Registration/Registration";
 import Register from "../Pages/Register/Register";
+import AddEvent from "../Pages/AddEvent/AddEvent";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/signin",
         element: <Signin></Signin>,
+      },
+      {
+        path: '/addEvent',
+        element: <AddEvent></AddEvent>
       },
       {
         path: "/registration",

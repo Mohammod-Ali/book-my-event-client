@@ -30,7 +30,7 @@ const Navbar = () => {
         <Link to='/'>My Bookings</Link>
       </li>
       <li>
-        <Link to='/'>Add Event (admin only)</Link>
+        <Link to='/addEvent'>Add Event (admin only)</Link>
       </li>
       <li>
         <Link to='/'>Profile</Link>
@@ -75,7 +75,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {
-          user ? <button onClick={handleSignOut}>Sign Out</button> :
+          user ? <>
+          <img className="rounded-full w-12 mr-1" src={user?.photoURL} alt="" />  
+           <p className="mr-2">{user?.displayName}</p>
+          <button onClick={handleSignOut} className="btn">Sign Out</button>
+          </> :
         <Link className="btn" to='/signin'>Sign In</Link>
         }
       </div>
