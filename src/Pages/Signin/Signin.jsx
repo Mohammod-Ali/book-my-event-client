@@ -2,6 +2,8 @@ import Lottie from "lottie-react";
 import signinLottie from '../../assets/lottie/signin.json'
 import { useContext } from "react";
 import AuthContext from "../../Context/AuthContext/AuthContext";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
+import { Link } from "react-router-dom";
 
 
 const Signin = () => {
@@ -17,6 +19,7 @@ const Signin = () => {
     signInUser(email, password)
     .then(result=>{
       console.log("sign in", result.user)
+      e.target.reset()
     })
     .catch(error => {
       console.log(error)
@@ -41,6 +44,15 @@ const Signin = () => {
           <div><a className="link link-hover">Forgot password?</a></div>
           <input  className="btn btn-neutral mt-4" type="submit" value="Login" />
         </fieldset>
+
+        {/* social login component added */}
+        <SocialLogin></SocialLogin>
+            <p>
+              You have no account, Please{" "}
+              <Link className="text-blue-500" to="/register">
+                Register
+              </Link>
+            </p>
       </form>
     </div>
   </div>
