@@ -27,7 +27,7 @@ const Navbar = () => {
         <Link to='/'>Event</Link>
       </li>
       <li>
-        <Link to='/'>My Bookings</Link>
+        <Link to='/myBookings'>My Bookings</Link>
       </li>
       <li>
         <Link to='/addEvent'>Add Event (admin only)</Link>

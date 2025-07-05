@@ -6,6 +6,7 @@ import Registration from "../Pages/Registration/Registration";
 import Register from "../Pages/Register/Register";
 import AddEvent from "../Pages/AddEvent/AddEvent";
 import Profile from "../Pages/Profile/Profile";
+import MyBookings from "../Pages/MyBookings/MyBookings";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,14 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: '/event',
+        element: <></>
+      },
+      {
+        path: '/myBookings',
+        element: <MyBookings></MyBookings>
       },
       {
         path: "register",
