@@ -7,7 +7,7 @@ const Search = () => {
     }
   return (
     <div
-      className="hero min-h-screen"
+      className="hero min-h-auto"
       style={{
         backgroundImage:
           "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
@@ -25,7 +25,7 @@ const Search = () => {
             <form onSubmit={searchHandle} className="card-body rounded bg-black">
               <label className="label text-2xl ">Type Event Name</label>
               <input
-                className="bg-white h-12 text-black text-2xl p-2 rounded"
+                className="bg-white h-12 text-black p-2 rounded"
                 type="text"
                 name="name"
               />
