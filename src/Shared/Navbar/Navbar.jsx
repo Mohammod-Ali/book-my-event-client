@@ -7,6 +7,21 @@ const Navbar = () => {
       <li>
         <Link to='/'>Home</Link>
       </li>
+      <li>
+        <Link to='/'>Event</Link>
+      </li>
+      <li>
+        <Link to='/'>My Bookings</Link>
+      </li>
+      <li>
+        <Link to='/'>Add Event (admin only)</Link>
+      </li>
+      <li>
+        <Link to='/'>Profile</Link>
+      </li>
+      <li>
+        
+      </li>
     </>
   );
   return (
@@ -43,7 +58,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <Link className="btn" to='/signin'>Sign In</Link>
       </div>
     </div>
   );

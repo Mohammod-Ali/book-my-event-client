@@ -1,0 +1,39 @@
+import Lottie from "lottie-react";
+import registrationLottie from '../../assets/lottie/register.json'
+
+const Register = () => {
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+        console.log(email, password)
+    }
+
+
+    return (
+       <div className="hero bg-base-200 min-h-screen">
+  <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="text-center lg:text-left w-xl">
+     
+      {/* lottie file here */}
+      <Lottie animationData={registrationLottie}></Lottie>
+    </div>
+    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <form onSubmit={handleSubmit} className="card-body">
+        <fieldset className="fieldset">
+          <label className="label">Email</label>
+          <input name="email" type="email" className="input" placeholder="Email" />
+          <label className="label">Password</label>
+          <input name="password" type="password" className="input" placeholder="Password" />
+          <div><a className="link link-hover">Forgot password?</a></div>
+          <input  className="btn btn-neutral mt-4"type="submit" value="Login" />
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+    );
+};
+
+export default Register;
