@@ -3,10 +3,10 @@ import registrationLottie from '../../assets/lottie/register.json'
 import { useContext } from "react";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-
+  const navigate = useNavigate()
   const {createUser} = useContext(AuthContext)
 
     const handleSubmit = e => {
@@ -18,6 +18,7 @@ const Register = () => {
         // validation
         createUser(email, password)
       .then((result) => {
+        navigate('/')
         console.log(result.user);
       })
       .catch((error) => {

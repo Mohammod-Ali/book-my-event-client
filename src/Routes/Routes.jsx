@@ -8,6 +8,7 @@ import AddEvent from "../Pages/AddEvent/AddEvent";
 import Profile from "../Pages/Profile/Profile";
 import MyBookings from "../Pages/MyBookings/MyBookings";
 import EventDetails from "../Shared/EventDetails/EventDetails";
+import Events from "../Pages/Events/Events";
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/events',
-        element: <></>
+        element: <Events></Events>
       },
       {
         path: '/myBookings',
@@ -39,8 +40,8 @@ export const router = createBrowserRouter([
         element: <AddEvent></AddEvent>
       },
       {
-        path: "/registration",
-        element: <Registration></Registration>,
+        path: "/registration/:id",
+        element: <Registration></Registration>
       },
       {
         path: '/profile',

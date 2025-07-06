@@ -1,43 +1,49 @@
-import React, {  useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
-
-  const {user, signOutUser} = useContext(AuthContext)
+  const { user, signOutUser } = useContext(AuthContext);
+  const [currentUser, setCurrentUser] = useState([])
 
   const handleSignOut = () => {
     signOutUser()
-    .then((result) => {
+      .then((result) => {
         console.log(result);
       })
       .catch((error) => {
         console.log(error.message);
       });
+  };
 
-  }
+  useEffect( () => {
+    fetch(`http://localhost:5000/users?email=${user?.email}`)
+    .then(res => res.json())
+    .then(data => setCurrentUser(data))
+  },[user?.email])
 
   // nav options here
   const navOptions = (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to='/'>Event</Link>
+        <Link to="/events">Events</Link>
       </li>
       <li>
-        <Link to='/myBookings'>My Bookings</Link>
+        <Link to="/myBookings">My Bookings</Link>
       </li>
       <li>
-        <Link to='/addEvent'>Add Event (admin only)</Link>
-      </li>
-      <li>
-        <Link to='/profile'>Profile</Link>
-      </li>
-      <li>
+        {
+          currentUser?.role === 'admin' && <Link to="/addEvent">Add Event (admin only)</Link>
+        }
         
       </li>
+      <li>
+        <Link to="/profile">Profile</Link>
+      </li>
+      <li></li>
     </>
   );
   return (
@@ -68,20 +74,29 @@ const Navbar = () => {
             {navOptions}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Book My Event</a>
+        <Link className="btn btn-ghost text-xl">Book My Event </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-        {
-          user ? <>
-          <img className="rounded-full w-12 mr-1" src={user?.photoURL} alt="" />  
-           <p className="mr-2">{user?.displayName}</p>
-          <button onClick={handleSignOut} className="btn">Sign Out</button>
-          </> :
-        <Link className="btn" to='/signin'>Sign In</Link>
-        }
+        {user ? (
+          <>
+            <img
+              className="rounded-full w-12 mr-1"
+              src={user?.photoURL}
+              alt=""
+            />
+            <p className="mr-2">{user?.displayName}</p>
+            <button onClick={handleSignOut} className="btn">
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <Link className="btn" to="/signin">
+            Sign In
+          </Link>
+        )}
       </div>
     </div>
   );

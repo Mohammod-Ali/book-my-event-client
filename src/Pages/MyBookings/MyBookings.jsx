@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 
 const MyBookings = () => {
     const [bookings, setBookings] = useState([
@@ -17,6 +17,12 @@ const MyBookings = () => {
       review: null,
     },
   ]);
+
+  //   useEffect(() => {
+  //   fetch("")
+  //     .then((res) => res.json())
+  //     .then((data) => setJobs(data));
+  // }, []);
 
   const [reviewForm, setReviewForm] = useState({
     rating: '',

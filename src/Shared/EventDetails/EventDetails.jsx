@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CalendarDays, MapPin, Ticket } from 'lucide-react';
 
 
@@ -9,9 +9,8 @@ const EventDetails = () => {
     const {id} = useParams()
     const [event, setEvent] = useState([])
 
-
     useEffect( () => {
-        axios.get('')
+        axios.get(`http://localhost:5000/events/${id}`)
         .then(res => {
             setEvent(res.data)
         })
@@ -67,9 +66,12 @@ const EventDetails = () => {
       <p className="text-gray-800 mb-8">{event.description}</p>
 
       {/* Register Button */}
+      <Link to={`/registration/${id}`}>
       <button className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
         Register Now
       </button>
+      </Link>
+      
     </div>
     );
 };
