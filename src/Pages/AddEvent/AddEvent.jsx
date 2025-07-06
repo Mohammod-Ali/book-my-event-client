@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 
 const AddEvent = () => {
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +20,38 @@ const AddEvent = () => {
     const photoURL = form.photoURL.value
 
     console.log(title, date, location, category, description, seats, registrationDeadline, registrationFee, photoURL);
-    e.target.reset()
+    const newEvent = {
+      title: title,
+      date: date,
+      location: location,
+      category: category,
+      description: description,
+      seats: seats,
+      registrationDeadline: registrationDeadline,
+      registrationFee: registrationFee,
+      image: photoURL,
+    }
+    fetch('http://localhost:5000/events', {
+          method: "POST",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(newEvent)
+        })
+        .then(res => res.json())
+        .then(data => {
+         if (data.insertedId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your Registration Done",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/events");
+            }
+        })
+    // e.target.reset()
   };
     
     return (
