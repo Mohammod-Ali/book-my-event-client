@@ -9,6 +9,7 @@ import Profile from "../Pages/Profile/Profile";
 import MyBookings from "../Pages/MyBookings/MyBookings";
 import EventDetails from "../Shared/EventDetails/EventDetails";
 import Events from "../Pages/Events/Events";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -41,11 +42,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/registration/:id",
-        element: <Registration></Registration>
+        element: <PrivateRoute><Registration></Registration></PrivateRoute>
       },
       {
         path: '/profile',
-        element: <Profile></Profile>
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
       },
       {
         path: '/events/:id',

@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import AuthContext from '../../Context/AuthContext/AuthContext';
 
 const Profile = () => {
+   const { user: authUser} = useContext(AuthContext)
   // Simulated user data (replace with actual user data from auth or backend)
   const [user, setUser] = useState({
-    name: 'John Doe',
-    email: 'john@example.com',
-    photo: 'https://i.pravatar.cc/150?img=3',
+    name: authUser?.displayName,
+    email: authUser?.email,
+    photo: authUser?.photoURL,
   });
+
+ 
 
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState(user);
