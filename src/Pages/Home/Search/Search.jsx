@@ -1,10 +1,9 @@
-import React from "react";
 
-const Search = () => {
-    const searchHandle = e => {
-        e.preventDefault()
-        console.log(e.target.name.value)
-    }
+const Search = ({searchHandle}) => {
+
+   
+  
+
   return (
     <div
       className="hero min-h-auto"

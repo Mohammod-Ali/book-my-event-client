@@ -4,28 +4,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 
-
-
 const Registration = () => {
-  const {id} = useParams()
-  const {user} = useContext(AuthContext)
-  const navigate = useNavigate()
-    const [event, setEvent] = useState([])
+  const { id } = useParams();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [event, setEvent] = useState([]);
 
-    useEffect( () => {
-        axios.get('/registration')
-        .then(res => {
-            setEvent(res.data)
-        })
-        .catch(err => {
-            console.error('Error from loading event:', err)
-        })
-    },[id])
-
+  useEffect(() => {
+    axios
+      .get("/registration")
+      .then((res) => {
+        setEvent(res.data);
+      })
+      .catch((err) => {
+        console.error("Error from loading event:", err);
+      });
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = e.target
+    const form = e.target;
     // const name = form.name.value;
     // const email = form.email.value;
     const phone = form.phone.value;
@@ -37,20 +35,20 @@ const Registration = () => {
       email: user?.email,
       phone: phone,
       tickets: tickets,
-      paymentMethod: paymentMethod
-    }
+      paymentMethod: paymentMethod,
+    };
     // console.log( phone, tickets, paymentMethod)
 
-    fetch('http://localhost:5000/bookings', {
+    fetch("https://book-my-event-server.vercel.app/bookings", {
       method: "POST",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
       },
-      body: JSON.stringify(newBookings)
+      body: JSON.stringify(newBookings),
     })
-    .then(res => res.json())
-    .then(data => {
-     if (data.insertedId) {
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -60,17 +58,18 @@ const Registration = () => {
           });
           navigate("/myBookings");
         }
-    })
+      });
 
     // e.target.reset()
   };
 
-    return (
-        <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg mt-6">
-      <h2 className="text-xl font-semibold mb-4 text-center">Register for: {event?.title || 'Event'}</h2>
+  return (
+    <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg mt-6">
+      <h2 className="text-xl font-semibold mb-4 text-center">
+        Register for: {event?.title || "Event"}
+      </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-
         <div>
           <label className="block mb-1 font-medium">Name</label>
           <input
@@ -133,7 +132,7 @@ const Registration = () => {
         </button>
       </form>
     </div>
-    );
+  );
 };
 
 export default Registration;

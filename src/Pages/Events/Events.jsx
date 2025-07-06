@@ -7,7 +7,7 @@ const Events = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/events`)
+      .get(`https://book-my-event-server.vercel.app/events`)
       .then((res) => {
         setEvents(res.data);
       })
@@ -16,15 +16,13 @@ const Events = () => {
       });
   }, []);
 
-  return <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mt-20">
-    {
-        events.map(event => <Card
-        key={event._id}
-        event={event}
-        ></Card>)
-    }
-  </div>;
-
+  return (
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mt-20">
+      {events.map((event) => (
+        <Card key={event._id} event={event}></Card>
+      ))}
+    </div>
+  );
 };
 
 export default Events;

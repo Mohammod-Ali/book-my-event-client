@@ -3,14 +3,12 @@ import AuthContext from '../../Context/AuthContext/AuthContext';
 
 const Profile = () => {
    const { user: authUser} = useContext(AuthContext)
-  // Simulated user data (replace with actual user data from auth or backend)
+
   const [user, setUser] = useState({
     name: authUser?.displayName,
     email: authUser?.email,
     photo: authUser?.photoURL,
   });
-
- 
 
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState(user);
@@ -28,6 +26,7 @@ const Profile = () => {
     setUser(formData);
     setEditMode(false);
     // Optionally send update to backend here
+    // // task for next time // //
     console.log('Updated profile:', formData);
   };
 

@@ -4,7 +4,7 @@ import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
-  const [currentUser, setCurrentUser] = useState([])
+  const [currentUser, setCurrentUser] = useState([]);
 
   const handleSignOut = () => {
     signOutUser()
@@ -16,11 +16,11 @@ const Navbar = () => {
       });
   };
 
-  useEffect( () => {
-    fetch(`http://localhost:5000/users?email=${user?.email}`)
-    .then(res => res.json())
-    .then(data => setCurrentUser(data))
-  },[user?.email])
+  useEffect(() => {
+    fetch(`https://book-my-event-server.vercel.app/users?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setCurrentUser(data));
+  }, [user?.email]);
 
   // nav options here
   const navOptions = (
@@ -34,12 +34,13 @@ const Navbar = () => {
       <li>
         <Link to="/myBookings">My Bookings</Link>
       </li>
-      <li>
-        {
-          currentUser?.role === 'admin' && <Link to="/addEvent">Add Event (admin only)</Link>
-        }
-        
-      </li>
+
+      {currentUser?.role === "admin" && (
+        <li>
+          <Link to="/addEvent">Add Event (admin only)</Link>
+        </li>
+      )}
+
       <li>
         <Link to="/profile">Profile</Link>
       </li>
@@ -74,7 +75,9 @@ const Navbar = () => {
             {navOptions}
           </ul>
         </div>
-        <Link className="btn btn-ghost text-xl">Book My Event </Link>
+        <Link to={"/"} className="btn btn-ghost text-xl">
+          Book My Event{" "}
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>

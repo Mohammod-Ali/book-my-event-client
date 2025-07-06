@@ -1,25 +1,33 @@
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
-
 const AddEvent = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const title = form.title.value
-    const date = form.date.value
-    const location = form.location.value
-    const category = form.category.value
-    const description = form.description.value
-    const seats = form.seats.value
-    const registrationDeadline = form.registrationDeadline.value
-    const registrationFee = form.registrationFee.value
-    const photoURL = form.photoURL.value
+    const title = form.title.value;
+    const date = form.date.value;
+    const location = form.location.value;
+    const category = form.category.value;
+    const description = form.description.value;
+    const seats = form.seats.value;
+    const registrationDeadline = form.registrationDeadline.value;
+    const registrationFee = form.registrationFee.value;
+    const photoURL = form.photoURL.value;
 
-    console.log(title, date, location, category, description, seats, registrationDeadline, registrationFee, photoURL);
+    console.log(
+      title,
+      date,
+      location,
+      category,
+      description,
+      seats,
+      registrationDeadline,
+      registrationFee,
+      photoURL
+    );
     const newEvent = {
       title: title,
       date: date,
@@ -30,35 +38,34 @@ const AddEvent = () => {
       registrationDeadline: registrationDeadline,
       registrationFee: registrationFee,
       image: photoURL,
-    }
-    fetch('http://localhost:5000/events', {
-          method: "POST",
-          headers: {
-            "content-type": "application/json"
-          },
-          body: JSON.stringify(newEvent)
-        })
-        .then(res => res.json())
-        .then(data => {
-         if (data.insertedId) {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Your Registration Done",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-              navigate("/events");
-            }
-        })
+    };
+    fetch("https://book-my-event-server.vercel.app/events", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newEvent),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your Registration Done",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/events");
+        }
+      });
     // e.target.reset()
   };
-    
-    return (
-         <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-xl">
+
+  return (
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-xl">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-
         <div>
           <label className="block mb-1 font-medium">Event Name</label>
           <input
@@ -129,7 +136,9 @@ const AddEvent = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Registration Deadline</label>
+            <label className="block mb-1 font-medium">
+              Registration Deadline
+            </label>
             <input
               type="date"
               name="registrationDeadline"
@@ -167,7 +176,7 @@ const AddEvent = () => {
         </button>
       </form>
     </div>
-    );
+  );
 };
 
 export default AddEvent;
