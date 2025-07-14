@@ -35,7 +35,7 @@ const SocialLogin = () => {
                     Swal.fire({
                       position: "top-end",
                       icon: "success",
-                      title: "Your Registration Done",
+                      title: "Login Successfully",
                       showConfirmButton: false,
                       timer: 1500,
                     });

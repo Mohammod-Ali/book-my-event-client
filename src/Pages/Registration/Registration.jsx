@@ -9,17 +9,18 @@ const Registration = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [event, setEvent] = useState([]);
+  console.log('eeeeeeee',event, id)
 
   useEffect(() => {
     axios
-      .get("/registration")
+      .get(`http://localhost:5000/events/${id}`)
       .then((res) => {
         setEvent(res.data);
       })
       .catch((err) => {
         console.error("Error from loading event:", err);
       });
-  }, [id]);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,8 +32,10 @@ const Registration = () => {
     const paymentMethod = form.paymentMethod.value;
 
     const newBookings = {
+      title: event.title,
       name: user?.displayName,
       email: user?.email,
+      date: event.date,
       phone: phone,
       tickets: tickets,
       paymentMethod: paymentMethod,
