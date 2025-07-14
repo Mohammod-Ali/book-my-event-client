@@ -3,12 +3,14 @@ import registrationLottie from '../../assets/lottie/register.json'
 import { useContext } from "react";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const navigate = useNavigate()
   const {createUser, updateUserProfile} = useContext(AuthContext)
+  const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state || '/'
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -52,7 +54,7 @@ const Register = () => {
                 });
 
         })
-        navigate('/')
+        navigate(from)
         
       })
       .catch((error) => {

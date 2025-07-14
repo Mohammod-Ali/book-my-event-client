@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../../Context/AuthContext/AuthContext";
+import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from "react-router-dom";
 
 
@@ -13,7 +14,33 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
         .then(result => {
-            console.log(result.user)
+            // console.log(result.user)
+            const user = result.user
+            const userInfo = {
+            name: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+          }
+
+             fetch(`http://localhost:5000/users`, {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(userInfo),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  if (data.insertedId) {
+                    Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "Your Registration Done",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  }
+                });
             navigate(from)
         })
         .catch(error => {
