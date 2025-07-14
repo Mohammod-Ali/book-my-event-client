@@ -8,9 +8,7 @@ const Home = () => {
   const searchHandle = (e) => {
     e.preventDefault();
     // setSearch(e.target.name.value)
-    fetch(
-      `https://book-my-event-server.vercel.app/events/?search=${e.target.name.value}`
-    )
+    fetch(`http://localhost:5000/events/?search=${e.target.name.value}`)
       .then((res) => res.json())
       .then((data) => setSearch(data));
     e.target.reset();

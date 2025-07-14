@@ -39,7 +39,7 @@ const Registration = () => {
     };
     // console.log( phone, tickets, paymentMethod)
 
-    fetch("https://book-my-event-server.vercel.app/bookings", {
+    fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

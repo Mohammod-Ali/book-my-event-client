@@ -7,7 +7,7 @@ const FeaturedEvent = ({ search }) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("https://book-my-event-server.vercel.app/events")
+    fetch("http://localhost:5000/events")
       .then((res) => res.json())
       .then((data) => setEvents(data));
   }, [search]);

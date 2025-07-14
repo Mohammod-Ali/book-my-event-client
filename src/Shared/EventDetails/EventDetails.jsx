@@ -9,7 +9,7 @@ const EventDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://book-my-event-server.vercel.app/events/${id}`)
+      .get(`http://localhost:5000/events/${id}`)
       .then((res) => {
         setEvent(res.data);
       })
