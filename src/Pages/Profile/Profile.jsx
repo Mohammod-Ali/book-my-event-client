@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import AuthContext from '../../Context/AuthContext/AuthContext';
-import Swal from 'sweetalert2';
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../../Context/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
 const Profile = () => {
-   const { user: authUser, updateUserProfile} = useContext(AuthContext)
+  const { user: authUser, updateUserProfile } = useContext(AuthContext);
 
   const [user, setUser] = useState({
     name: authUser?.displayName,
@@ -28,35 +28,36 @@ const Profile = () => {
     setEditMode(false);
     // console.log('Updated profile:', formData.name, formData.photo);
     // profile update here
-    updateUserProfile( formData.name, formData.photo)
-            .then(() => {
-              const userInfo = {
-                name: formData.name,
-                photoURL: formData.photoURL,
-              }
-    
-                 fetch(`http://localhost:5000/users/${authUser?.email}`, {
-                    method: "PUT",
-                    headers: {
-                      "content-type": "application/json",
-                    },
-                    body: JSON.stringify(userInfo),
-                  })
-                    .then((res) => res.json())
-                    .then((data) => {
-                      console.log(data)
-                      if (data.modifiedCount) {
-                        Swal.fire({
-                          position: "top-end",
-                          icon: "success",
-                          title: "Profile Info Update Successfully",
-                          showConfirmButton: false,
-                          timer: 1500,
-                        });
-                      }
-                    });
-    
-            })
+    updateUserProfile(formData.name, formData.photo).then(() => {
+      const userInfo = {
+        name: formData.name,
+        photoURL: formData.photoURL,
+      };
+
+      fetch(
+        `https://book-my-event-server.vercel.app/users/${authUser?.email}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.modifiedCount) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Profile Info Update Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    });
   };
 
   return (

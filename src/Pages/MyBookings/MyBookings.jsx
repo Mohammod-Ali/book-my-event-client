@@ -8,7 +8,7 @@ const MyBookings = () => {
   // console.log(bookings);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/bookings/${user?.email}`)
+    fetch(`https://book-my-event-server.vercel.app/bookings/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setBookings(data));
   }, []);
@@ -28,7 +28,7 @@ const MyBookings = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${id}`, {
+        fetch(`https://book-my-event-server.vercel.app/bookings/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -67,7 +67,7 @@ const MyBookings = () => {
     setSelectedBookingId(null);
 
     console.log("inside the update", updated, _id);
-    fetch(`http://localhost:5000/bookings/${_id}`, {
+    fetch(`https://book-my-event-server.vercel.app/bookings/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -9,11 +9,11 @@ const Registration = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [event, setEvent] = useState([]);
-  console.log('eeeeeeee',event, id)
+  console.log("eeeeeeee", event, id);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/events/${id}`)
+      .get(`https://book-my-event-server.vercel.app/events/${id}`)
       .then((res) => {
         setEvent(res.data);
       })
@@ -42,7 +42,7 @@ const Registration = () => {
     };
     // console.log( phone, tickets, paymentMethod)
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://book-my-event-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

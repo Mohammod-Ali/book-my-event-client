@@ -7,7 +7,7 @@ const FeaturedEvent = ({ search }) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/events")
+    fetch("https://book-my-event-server.vercel.app/events")
       .then((res) => res.json())
       .then((data) => setEvents(data));
   }, [search]);
@@ -15,7 +15,7 @@ const FeaturedEvent = ({ search }) => {
   return (
     <>
       {search && <h1 className="text-2xl mt-10">Your Search Result:</h1>}
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mt-10">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mt-10 justify-items-center">
         {search &&
           search.map((singleSearch) => (
             <div
@@ -52,7 +52,7 @@ const FeaturedEvent = ({ search }) => {
       {search ? (
         <></>
       ) : (
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mt-20">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mt-20 justify-items-center">
           {events.slice(0, 3).map((event) => (
             <div key={event._id} className="card bg-base-100 w-96 shadow-sm">
               <figure>

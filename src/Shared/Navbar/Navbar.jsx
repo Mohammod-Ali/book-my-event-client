@@ -5,13 +5,13 @@ import AuthContext from "../../Context/AuthContext/AuthContext";
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     signOutUser()
       .then((result) => {
         console.log(result);
-        navigate('/')
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.message);
@@ -19,10 +19,14 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setCurrentUser(data));
-  }, [user?.email]);
+    if (user?.email) {
+      fetch(
+        `https://book-my-event-server.vercel.app/users?email=${user?.email}`
+      )
+        .then((res) => res.json())
+        .then((data) => setCurrentUser(data));
+    }
+  }, [user]);
 
   // nav options here
   const navOptions = (

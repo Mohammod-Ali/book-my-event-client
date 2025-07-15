@@ -39,7 +39,7 @@ const AddEvent = () => {
       registrationFee: registrationFee,
       image: photoURL,
     };
-    fetch("http://localhost:5000/events", {
+    fetch("https://book-my-event-server.vercel.app/events", {
       method: "POST",
       headers: {
         "content-type": "application/json",
